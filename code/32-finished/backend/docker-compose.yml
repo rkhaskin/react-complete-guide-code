@@ -14,5 +14,8 @@ services:
     volumes:
       - /app/node_modules
       - ../frontend:/app
-        
+    environment:
+      # this guaranties that the changes to the code reflect on the container without  restart
+      - WATCHPACK_POLLING=true
+
     
