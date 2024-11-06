@@ -1,0 +1,20 @@
+version: "3"
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  web:
+    build: ../frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ../frontend:/app
+    environment:
+      # this guaranties that the changes to the code reflect on the container without  restart
+      - WATCHPACK_POLLING=true
+    #network_mode: "host"
